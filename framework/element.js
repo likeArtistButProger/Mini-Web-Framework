@@ -1,0 +1,144 @@
+import h from "snabbdom/h"
+
+const initialState = {
+    template: "",
+    on: {}
+};
+
+const createReducer = args => (acc, currentString, index) => {
+    const currentArg = args[index];
+
+
+    if(currentArg && currentArg.type === "event") {
+        return { ...acc, on: {click: currentArg.click } };
+    }
+
+
+    return {
+        ...acc,
+        template: acc.template + currentString + (args[index] || "")
+    }
+    
+
+
+};
+
+const createElement = tagName => (strings, ...args) => {
+    const { template, on } = strings.reduce(createReducer(args), initialState);
+
+
+
+    return {
+        type: "element",
+        template: h(tagName, { on }, template)
+    };
+
+    
+
+};
+
+// Implementation only for HTML5 tags
+
+export const a = createElement("a");
+export const abbr = createElement("abbr");
+export const address = createElement("address");
+export const area = createElement("area");
+export const article = createElement("article");
+export const aside = createElement("aside");
+export const audio = createElement("audio");
+export const b = createElement("b");
+export const base = createElement("base");
+export const bdi = createElement("bdi");
+export const bdo = createElement("bdo");
+export const blockquote = createElement("blockquote");
+export const br = createElement("br")
+export const button = createElement("button");
+export const canvas = createElement("canvas");
+export const caption = createElement("caption");
+export const cite = createElement("cite");
+export const code = createElement("code");
+export const colgroup = createElement("colgroup");
+export const col = createElement("col");
+export const data = createElement("data");
+export const datalist = createElement("datalist");
+export const dd = createElement("dd");
+export const del = createElement("del");
+export const details = createElement("details");
+export const dfn = createElement("dfn");
+export const dialog = createElement("dialog");
+export const div = createElement("div");
+export const dl = createElement("dl");
+export const dt = createElement("dt");
+export const em = createElement("em");
+export const embed = createElement("embed");
+export const fieldset = createElement("fieldset");
+export const figcaption = createElement("figcaption");
+export const figure = createElement("figure");
+export const footer = createElement("footer");
+export const form = createElement("form");
+export const h1 = createElement("h1");
+export const h2 = createElement("h2");
+export const h3 = createElement("h3");
+export const h4 = createElement("h4");
+export const h5 = createElement("h5");
+export const h6 = createElement("h6");
+export const header = createElement("header");
+export const hr = createElement("hr");
+export const i = createElement("i");
+export const iframe = createElement("iframe");
+export const img = createElement("img");
+export const input = createElement("input");
+export const ins = createElement("ins");
+export const kbd = createElement("kbd");
+export const label = createElement("label");
+export const legend = createElement("legend");
+export const li = createElement("li");
+// export const link = createElement("link"); ?? I guess we don't need that one inside out project
+export const main = createElement("main");
+export const map = createElement("map");
+export const mark = createElement("mark");
+export const meter = createElement("meter");
+export const nav = createElement("nav");
+// object tag also not implemented because of it's issues with compatibilities
+export const ol = createElement("ol");
+export const optgroup = createElement("optgroup");
+export const option = createElement("option");
+export const output = createElement("output");
+export const p = createElement("p");
+export const picture = createElement("picture");
+export const pre = createElement("pre");
+export const progress = createElement("progress");
+export const q = createElement("q");
+export const rp = createElement("rp");
+export const rt = createElement("rt");
+export const ruby = createElement("ruby");
+export const s = createElement("s");
+export const samp = createElement("samp");
+export const section = createElement("section");
+export const select = createElement("select");
+export const small = createElement("small");
+export const source = createElement("source");
+export const span = createElement("span");
+export const strong = createElement("strong");
+export const sub = createElement("sub");
+export const summary = createElement("summary");
+export const sup = createElement("sup");
+export const svg = createElement("svg");
+export const table = createElement("table");
+export const tbody = createElement("tbody");
+export const td = createElement("td");
+export const template = createElement("template");
+export const textarea = createElement("textarea");
+export const tfoot = createElement("tfoot");
+export const th = createElement("th");
+export const time = createElement("time");
+export const tr = createElement("tr");
+export const track = createElement("track");
+export const u = createElement("u");
+export const ul = createElement("ul");
+export const varTag = createElement("var"); //since javascript has it own var we have to use another name
+export const video = createElement("video");
+export const wbr = createElement("wbr");
+
+
+
